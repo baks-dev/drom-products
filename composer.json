@@ -28,7 +28,7 @@
   },
   "autoload": {
     "psr-4": {
-      "BaksDev\\Drom\\Products": ""
+      "BaksDev\\Drom\\Products\\": ""
     }
   },
   "config": {
