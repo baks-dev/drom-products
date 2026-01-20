@@ -23,15 +23,21 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products;
+namespace BaksDev\Drom\Products\Repository\AllProductsWithDromImage;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Core\Form\Search\SearchDTO;
+use BaksDev\Core\Services\Paginator\PaginatorInterface;
+use BaksDev\Drom\Products\Forms\DromFilter\DromProductsFilterDTO;
+use BaksDev\Products\Product\Forms\ProductFilter\Admin\ProductFilterDTO;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
+interface AllProductsWithDromImagesInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    public function search(SearchDTO $search): self;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function filter(ProductFilterDTO $filter): self;
 
+    public function filterDromProducts(DromProductsFilterDTO $DromProductsFilter): self;
+
+    /** Все продукты дром в виде пагинатора с резалтами */
+    public function findPaginator(): PaginatorInterface;
 }

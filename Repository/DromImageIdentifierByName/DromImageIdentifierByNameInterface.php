@@ -1,6 +1,6 @@
 <?php
 /*
- *  Copyright 2025.  Baks.dev <admin@baks.dev>
+ *  Copyright 2026.  Baks.dev <admin@baks.dev>
  *  
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -23,15 +23,12 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products;
+namespace BaksDev\Drom\Products\Repository\DromImageIdentifierByName;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Drom\Products\Type\Image\DromProductImageUid;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
+interface DromImageIdentifierByNameInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
-
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
-
+    /** Метод возвращает идентификатор файла изображения по дайджесту md5 (image.name) */
+    public function find(string $name): DromProductImageUid|false;
 }

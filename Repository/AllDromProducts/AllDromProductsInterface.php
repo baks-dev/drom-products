@@ -1,6 +1,6 @@
 <?php
 /*
- *  Copyright 2025.  Baks.dev <admin@baks.dev>
+ *  Copyright 2026.  Baks.dev <admin@baks.dev>
  *  
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -23,15 +23,21 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products;
+namespace BaksDev\Drom\Products\Repository\AllDromProducts;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Products\Product\Entity\Product;
+use BaksDev\Products\Product\Type\Id\ProductUid;
+use Generator;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
+#[Autoconfigure(public: true)]
+interface AllDromProductsInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    public function product(Product|ProductUid|string $product): self;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
-
+    /**
+     * Возвращает данные карточек продукта Drom
+     * @return Generator<AllDromProductsResult>
+     */
+    public function findAll(): Generator;
 }

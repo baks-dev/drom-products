@@ -1,0 +1,22 @@
+# Role
+ROLE_DROM_PRODUCTS:
+  header: 'Drom products Settings'
+  name: 'Drom product Settings'
+  desc: 'Drom product Settings'
+
+# Rules
+ROLE_DROM_PRODUCTS_INDEX:
+  name: 'View'
+  desc: ''
+
+ROLE_DROM_PRODUCTS_NEW:
+  name: 'Add'
+  desc: ''
+
+ROLE_DROM_PRODUCTS_EDIT:
+  name: 'Edit'
+  desc: ''
+
+ROLE_DROM_PRODUCTS_DELETE:
+  name: 'Delete'
+  desc: ''
