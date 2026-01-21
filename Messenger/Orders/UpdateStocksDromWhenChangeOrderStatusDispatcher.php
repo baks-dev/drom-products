@@ -91,7 +91,11 @@ final readonly class UpdateStocksDromWhenChangeOrderStatusDispatcher
 
                 if(false === ($CurrentProductIdentifier instanceof CurrentProductIdentifierResult))
                 {
-                    $this->Logger->warning(sprintf('Заказ %s не был найден', $product->getProduct()));
+                    $this->Logger->warning(
+                        sprintf('Заказ %s не был найден', $product->getProduct()),
+                        [var_export($message, true), self::class.':'.__LINE__]
+                    );
+
                     continue;
                 }
 

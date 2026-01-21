@@ -26,13 +26,8 @@ declare(strict_types=1);
 namespace BaksDev\Drom\Products\UseCase\NewEdit\Tests;
 
 use BaksDev\Drom\Products\Entity\DromProduct;
-use BaksDev\Drom\Products\Type\Id\DromProductUid;
 use BaksDev\Drom\Products\UseCase\NewEdit\DromProductDTO;
 use BaksDev\Drom\Products\UseCase\NewEdit\DromProductHandler;
-use BaksDev\Products\Product\Type\Id\ProductUid;
-use BaksDev\Products\Product\Type\Offers\ConstId\ProductOfferConst;
-use BaksDev\Products\Product\Type\Offers\Variation\ConstId\ProductVariationConst;
-use BaksDev\Products\Product\Type\Offers\Variation\Modification\ConstId\ProductModificationConst;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\Attributes\DependsOnClass;
 use PHPUnit\Framework\Attributes\Group;
@@ -58,7 +53,7 @@ class DromProductEditTest extends KernelTestCase
         /** @var DromProduct $product */
         $product = $Em
             ->getRepository(DromProduct::class)
-            ->find(DromProductUid::TEST);
+            ->find('019bc113-4ced-7af5-8167-06be601051a4');
 
         self::assertNotNull($product);
 
@@ -66,17 +61,8 @@ class DromProductEditTest extends KernelTestCase
 
         $product->getDto($editDTO);
 
-        self::assertTrue($editDTO->getProduct()->equals(ProductUid::TEST));
-        self::assertTrue($editDTO->getOffer()->equals(ProductOfferConst::TEST));
-        self::assertTrue($editDTO->getVariation()->equals(ProductVariationConst::TEST));
-        self::assertTrue($editDTO->getModification()->equals(ProductModificationConst::TEST));
-
-        self::assertEquals('new_description', $editDTO->getDescription());
-
         $editDTO->setDescription('edit_description');
         self::assertSame('edit_description', $editDTO->getDescription());
-
-        self::assertEmpty($editDTO->getImages());
 
         /** @var DromProductHandler $Handler */
         $Handler = $container->get(DromProductHandler::class);

@@ -53,7 +53,7 @@ class DromProductImagesEditTest extends KernelTestCase
 
         $dromProduct = $EntityManager
             ->getRepository(DromProduct::class)
-            ->find(DromProductUid::TEST);
+            ->find('019bc113-4ced-7af5-8167-06be601051a4');
 
         self::assertNotNull($dromProduct);
 

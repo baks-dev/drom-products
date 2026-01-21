@@ -27,13 +27,17 @@ namespace BaksDev\Drom\Products\Repository\AllDromProducts;
 
 use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Core\Doctrine\DBALQueryBuilder;
+use BaksDev\Products\Product\Entity\Event\ProductEvent;
 use BaksDev\Products\Product\Entity\Product;
+use BaksDev\Products\Product\Type\Event\ProductEventUid;
 use BaksDev\Products\Product\Type\Id\ProductUid;
 use Generator;
 
 final class AllDromProductsRepository implements AllDromProductsInterface
 {
     private ProductUid|false $product = false;
+
+    private ProductEventUid|false $event = false;
 
     public function __construct(
         private readonly DBALQueryBuilder $DBALQueryBuilder,
@@ -56,6 +60,23 @@ final class AllDromProductsRepository implements AllDromProductsInterface
         return $this;
     }
 
+    public function event(ProductEvent|ProductEventUid|string $event): self
+    {
+        if($event instanceof ProductEvent)
+        {
+            $event = $event->getId();
+        }
+
+        if(is_string($event))
+        {
+            $event = new ProductEventUid($event);
+        }
+
+        $this->event = $event;
+
+        return $this;
+    }
+
     /**
      * Возвращает данные карточек продукта Drom
      * @return Generator<AllDromProductsResult>
@@ -74,11 +95,25 @@ final class AllDromProductsRepository implements AllDromProductsInterface
                 ->setParameter('product', $this->product, ProductUid::TYPE);
         }
 
+        if($this->event !== false)
+        {
+            $dbal
+                ->join(
+                    'drom_product',
+                    Product::class,
+                    'product',
+                    'product.event = :event'
+                )
+                ->setParameter('event', $this->event, ProductEventUid::TYPE);
+        }
+
         $dbal->addSelect('drom_product.id as id');
         $dbal->addSelect('drom_product.product as product');
         $dbal->addSelect('drom_product.offer as offer');
         $dbal->addSelect('drom_product.variation as variation');
         $dbal->addSelect('drom_product.modification as modification');
+
+        $dbal->enableCache('drom-products', 86400);
 
         return $dbal->fetchAllHydrate(AllDromProductsResult::class);
     }

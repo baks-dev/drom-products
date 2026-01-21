@@ -29,6 +29,7 @@ use BaksDev\Drom\Products\Repository\AllDromProducts\AllDromProductsInterface;
 use BaksDev\Drom\Products\Repository\AllDromProducts\AllDromProductsRepository;
 use BaksDev\Drom\Products\Repository\AllDromProducts\AllDromProductsResult;
 use BaksDev\Drom\Products\UseCase\NewEdit\Tests\DromProductNewTest;
+use BaksDev\Products\Product\Type\Event\ProductEventUid;
 use PHPUnit\Framework\Attributes\DependsOnClass;
 use ReflectionClass;
 use ReflectionMethod;
@@ -42,12 +43,14 @@ use Symfony\Component\DependencyInjection\Attribute\When;
 final class AllDromProductsRepositoryTest extends KernelTestCase
 {
     #[DependsOnClass(DromProductNewTest::class)]
-    public function testRepository(): void
+    public function testRepositoryProduct(): void
     {
         /** @var AllDromProductsRepository $AllDromProductsRepository */
         $AllDromProductsRepository = self::getContainer()->get(AllDromProductsInterface::class);
 
-        $result = $AllDromProductsRepository->findAll();
+        $result = $AllDromProductsRepository
+            ->product('01876b34-ed23-7c18-ba48-9071e8646a08')
+            ->findAll();
 
         foreach ($result as $allDromProductsResult) {
             self::assertInstanceOf(AllDromProductsResult::class, $allDromProductsResult);
@@ -69,5 +72,38 @@ final class AllDromProductsRepositoryTest extends KernelTestCase
 
             return;
         }
+    }
+    
+    public function testRepositoryEvent(): void
+    {
+        /** @var AllDromProductsRepository $AllDromProductsRepository */
+        $AllDromProductsRepository = self::getContainer()->get(AllDromProductsInterface::class);
+
+        $result = $AllDromProductsRepository
+            ->event(ProductEventUid::TEST)
+            ->findAll();
+
+        foreach ($result as $allDromProductsResult) {
+            self::assertInstanceOf(AllDromProductsResult::class, $allDromProductsResult);
+
+            // Вызываем все геттеры
+            $reflectionClass = new ReflectionClass(AllDromProductsResult::class);
+            $methods = $reflectionClass->getMethods(ReflectionMethod::IS_PUBLIC);
+
+            foreach($methods as $method)
+            {
+                // Методы без аргументов
+                if($method->getNumberOfParameters() === 0)
+                {
+                    // Вызываем метод
+                    $data = $method->invoke($allDromProductsResult);
+//                        dump($data);
+                }
+            }
+
+            return;
+        }
+
+        self::assertTrue(true);
     }
 }

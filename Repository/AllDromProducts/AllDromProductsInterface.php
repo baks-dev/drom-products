@@ -25,7 +25,9 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Repository\AllDromProducts;
 
+use BaksDev\Products\Product\Entity\Event\ProductEvent;
 use BaksDev\Products\Product\Entity\Product;
+use BaksDev\Products\Product\Type\Event\ProductEventUid;
 use BaksDev\Products\Product\Type\Id\ProductUid;
 use Generator;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
@@ -33,7 +35,11 @@ use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 #[Autoconfigure(public: true)]
 interface AllDromProductsInterface
 {
+    /** Фильтруем по идентификатору продукта */
     public function product(Product|ProductUid|string $product): self;
+
+    /** Фильтруем по событию продукта */
+    public function event(ProductEvent|ProductEventUid|string $event): self;
 
     /**
      * Возвращает данные карточек продукта Drom

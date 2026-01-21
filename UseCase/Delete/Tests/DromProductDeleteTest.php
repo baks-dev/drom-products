@@ -94,7 +94,10 @@ class DromProductDeleteTest extends KernelTestCase
         $containerBag = $container->get(ContainerBagInterface::class);
 
         /** Создаем путь к тестовой директории */
-        $testUploadDir = implode(DIRECTORY_SEPARATOR, [$containerBag->get('kernel.project_dir'), 'public', 'upload', 'tests']);
+        $testUploadDir = implode(
+            DIRECTORY_SEPARATOR,
+            [$containerBag->get('kernel.project_dir'), 'public', 'upload', 'tests']
+        );
 
         /** Проверяем существование директории для тестовых картинок*/
         if(true === is_dir($testUploadDir))

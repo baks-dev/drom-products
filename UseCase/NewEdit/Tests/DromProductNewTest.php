@@ -53,8 +53,10 @@ use Symfony\Component\DependencyInjection\Attribute\When;
 #[Group('drom-products-usecase')]
 #[Group('drom-board')]
 #[Group('drom-board-repository')]
-class DromProductNewTest extends KernelTestCase
+final class DromProductNewTest extends KernelTestCase
 {
+    #[DependsOnClass(DromProductIndexAdminControllerTest::class)]
+    #[DependsOnClass(ProductsProductNewAdminUseCaseTest::class)]
     public static function setUpBeforeClass(): void
     {
         $container = self::getContainer();
