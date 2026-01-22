@@ -21,17 +21,13 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace BaksDev\Drom\Products\Entity\Kit;
 
-namespace BaksDev\Drom\Products;
-
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
+interface DromProductKitInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
-
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
-
+    /**
+     * Значение свойства
+     * @see DromProductKit
+     */
+    public function getValue(): ?int;
 }

@@ -23,15 +23,26 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Drom\Products\BaksDevDromProductsBundle;
+use BaksDev\Drom\Products\Type\Id\DromProductType;
+use BaksDev\Drom\Products\Type\Id\DromProductUid;
+use BaksDev\Drom\Products\Type\Image\DromProductImageType;
+use BaksDev\Drom\Products\Type\Image\DromProductImageUid;
+use Symfony\Config\DoctrineConfig;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
-{
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+return static function(DoctrineConfig $doctrine): void {
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    $doctrine->dbal()->type(DromProductUid::TYPE)->class(DromProductType::class);
+    $doctrine->dbal()->type(DromProductImageUid::TYPE)->class(DromProductImageType::class);
 
-}
+    $emDefault = $doctrine->orm()->entityManager('default')->autoMapping(true);
+
+    $emDefault->mapping('drom-products')
+        ->type('attribute')
+        ->dir(BaksDevDromProductsBundle::PATH.'Entity')
+        ->isBundle(false)
+        ->prefix(BaksDevDromProductsBundle::NAMESPACE.'\\Entity')
+        ->alias('drom-products');
+};

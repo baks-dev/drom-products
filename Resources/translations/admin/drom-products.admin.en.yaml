@@ -1,0 +1,27 @@
+page:
+  index: 'Product settings for Drom'
+  new: 'Add products for Drom'
+  edit: 'Edit products for Drom'
+  delete: 'Delete products for Drom'
+  description: 'Edit description template'
+
+breadcrumb:
+  index: 'Product settings for Drom'
+  new: 'Add products for Drom'
+  edit: 'Edit products for Drom'
+  delete: 'Delete products for Drom'
+
+success:
+  new: 'Product settings for Drom have been successfully added'
+  edit: 'Product settings for Drom have been successfully updated'
+  delete: 'Product settings for Drom were successfully deleted'
+  restore: 'Product settings for Drom have been successfully restored'
+
+danger:
+  new: '%s: Error adding product settings for Drom'
+  edit: '%s: Error when updating product settings for Drom'
+  delete: '%s: Error updating product settings for Drom'
+  restore: '%s: Error while restoring product settings for Drom'
+form:
+  delete:
+    h4: 'Are you sure you want to delete product settings for Drom?'

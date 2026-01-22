@@ -23,15 +23,15 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Drom\Products\BaksDevDromProductsBundle;
+use Symfony\Config\TwigConfig;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
-{
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+return static function(TwigConfig $twig) {
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
-
-}
+    $twig->path(
+        BaksDevDromProductsBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Resources', 'view', '']), //.'Resources/view',
+        'drom-products'
+    );
+};

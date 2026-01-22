@@ -1,0 +1,87 @@
+{# Пользовательское меню редактирования продукта #}
+
+{% set identifier = item.id %}
+{% if item.productOfferConst is not null %}
+    {% set identifier = item.productOfferConst %}
+{% endif %}
+{% if item.productVariationConst is not null %}
+    {% set identifier = item.productVariationConst %}
+{% endif %}
+{% if item.productModificationConst is not null %}
+    {% set identifier = item.productModificationConst %}
+{% endif %}
+
+<button class="btn btn-link btn-sm p-0"
+        id="usecase-{{ identifier }}"
+        data-bs-container="body"
+        data-bs-toggle="popover"
+        data-bs-placement="right"
+        data-bs-trigger="click"
+>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+         fill="currentColor" class="text-muted"
+         viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+    </svg>
+</button>
+
+{# Чекбокс #}
+<label>
+    <input class="form-check-input ms-3 p-2" type="checkbox"
+           value="{{ identifier }}">
+</label>
+
+
+<div id="usecase-{{ identifier }}-content" class="d-none">
+    <ul class="leader list-group list-group-flush ">
+
+        {# Изменить параметры #}
+        {% if  is_granted(ROLE~'_EDIT') or is_granted('ROLE_ADMIN') %}
+
+            <li class="list-group-item d-flex justify-content-between bg-transparent border-0 text-truncate rounded-5">
+                <a href="{{ path('drom-products:admin.products.edit', {
+                    category: item.categoryName,
+                    product : item.id,
+                    offer: item.productOfferConst,
+                    variation: item.productVariationConst,
+                    modification: item.productModificationConst,
+                }) }}"
+                   class="text-decoration-none text-dark w-100 modal-link"
+                   data-bs-toggle="modal"
+                   data-bs-target="#modal"
+                   title="Изменить параметры упаковки">
+                    Изменить настройки
+                </a>
+            </li>
+
+        {% endif %}
+
+        {# Редактировать продукт #}
+        {% if  is_granted(ROLE~'_EDIT') or is_granted('ROLE_ADMIN') %}
+
+            <li class="list-group-item d-flex justify-content-between bg-transparent border-0 text-truncate rounded-5">
+                <a href="{{ path('products-product:admin.newedit.edit', {id: item.event }) }}"
+                   class="text-decoration-none text-dark w-100"
+                   title="{{ 'btn.edit'|trans({}, 'core.btn') }}">
+                    Редактировать продукт
+                </a>
+            </li>
+
+        {% endif %}
+
+        {# Удалить продукт #}
+        {% if item.dromProductId != null and (is_granted(ROLE~'_DELETE') or is_granted('ROLE_ADMIN')) %}
+            <li class="list-group-item d-flex justify-content-between bg-transparent border-0 text-truncate rounded-5">
+                <a href="{{ path('drom-products:admin.products.delete', {id: item.dromProductId }) }}"
+                   class="text-decoration-none text-dark w-100 modal-link"
+                   data-bs-toggle="modal"
+                   data-bs-target="#modal"
+                   title="{{ 'btn.delete'|trans({}, 'core.btn') }}">
+                    Удалить продукт
+                </a>
+            </li>
+        {% endif %}
+
+    </ul>
+</div>

@@ -19,19 +19,27 @@
  *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
+ *
  */
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products;
+namespace BaksDev\Drom\Products\Repository\AllProductsIdentifierByDromMapper;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Users\Profile\UserProfile\Entity\UserProfile;
+use BaksDev\Users\Profile\UserProfile\Type\Id\UserProfileUid;
+use Generator;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
+interface AllProductsWithDromMapperInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    /** Для фильтрации по артикулу или его части */
+    public function byArticle(string $article): self;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function profile(UserProfile|UserProfileUid $profile): self;
 
+    /**
+     * Метод получает массив элементов продукции с соотношением свойств
+     * @return Generator<int, AllProductsWithDromMapperResult>|false
+     * */
+    public function findAll(): Generator|false;
 }

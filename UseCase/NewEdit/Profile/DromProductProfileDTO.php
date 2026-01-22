@@ -23,15 +23,32 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products;
+namespace BaksDev\Drom\Products\UseCase\NewEdit\Profile;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Drom\Products\Entity\Profile\DromProductProfileInterface;
+use BaksDev\Users\Profile\UserProfile\Type\Id\UserProfileUid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
+/** @see DromProductProfile */
+final class DromProductProfileDTO implements DromProductProfileInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    /** Значение свойства */
+    #[Assert\NotBlank]
+    private ?UserProfileUid $value = null;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    /**
+     * Значение свойства
+     *
+     * @see DromProductProfile
+     */
+    public function getValue(): ?UserProfileUid
+    {
+        return $this->value;
+    }
 
+    public function setValue(UserProfileUid $value): self
+    {
+        $this->value = $value;
+        return $this;
+    }
 }

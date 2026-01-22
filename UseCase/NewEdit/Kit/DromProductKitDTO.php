@@ -23,15 +23,27 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products;
+namespace BaksDev\Drom\Products\UseCase\NewEdit\Kit;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Drom\Products\Entity\Kit\DromProductKitInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
+/** @see DromProductKit */
+final class DromProductKitDTO implements DromProductKitInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    /** Значение свойства */
+    #[Assert\NotBlank]
+    #[Assert\Range(min: 1)]
+    private ?int $value = 1;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function getValue(): ?int
+    {
+        return $this->value;
+    }
 
+    public function setValue(?int $value): self
+    {
+        $this->value = is_null($value) || 1 > $value ? 1 : $value;
+        return $this;
+    }
 }

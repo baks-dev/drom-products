@@ -23,15 +23,31 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products;
+namespace BaksDev\Drom\Products\UseCase\Delete;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Drom\Products\Entity\DromProductInterface;
+use BaksDev\Drom\Products\Type\Id\DromProductUid;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
+/** @see DromProduct */
+final class DromProductDeleteDTO implements DromProductInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    #[Assert\NotBlank]
+    #[Assert\Uuid]
+    private DromProductUid $id;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function getId(): DromProductUid
+    {
+        return $this->id;
+    }
 
+    public function setId(DromProductUid|string $id): void
+    {
+        if(is_string($id))
+        {
+            $id = new DromProductUid($id);
+        }
+
+        $this->id = $id;
+    }
 }

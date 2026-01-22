@@ -23,15 +23,18 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products;
+namespace BaksDev\Drom\Products\Entity\Profile;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Users\Profile\UserProfile\Type\Id\UserProfileUid;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
+interface DromProductProfileInterface
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    /**
+     * Значение свойства
+     *
+     * @see DromProductProfile
+     */
+    public function getValue(): ?UserProfileUid;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
 
 }

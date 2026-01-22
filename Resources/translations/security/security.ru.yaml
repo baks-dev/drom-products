@@ -1,0 +1,22 @@
+# Роль
+ROLE_DROM_PRODUCTS:
+  header: 'Настройки продукта Drom'
+  name: 'Настройки продукта Drom'
+  desc: 'Настройки продукта Drom'
+
+# Правила
+ROLE_DROM_PRODUCTS_INDEX:
+  name: 'Просмотр'
+  desc: ''
+
+ROLE_DROM_PRODUCTS_NEW:
+  name: 'Добавить'
+  desc: ''
+
+ROLE_DROM_PRODUCTS_EDIT:
+  name: 'Редактировать'
+  desc: ''
+
+ROLE_DROM_PRODUCTS_DELETE:
+  name: 'Удалить'
+  desc: ''

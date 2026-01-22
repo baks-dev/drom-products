@@ -1,6 +1,6 @@
 <?php
 /*
- *  Copyright 2025.  Baks.dev <admin@baks.dev>
+ *  Copyright 2026.  Baks.dev <admin@baks.dev>
  *  
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -23,15 +23,28 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products;
+namespace BaksDev\Drom\Products\Repository\DromImageIdentifierByName\Tests;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Drom\Products\Repository\DromImageIdentifierByName\DromImageIdentifierByNameInterface;
+use PHPUnit\Framework\Attributes\Group;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\DependencyInjection\Attribute\When;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
+#[When(env: 'test')]
+#[Group('drom-products')]
+#[Group('drom-products-repository')]
+class DromImageIdentifierByNameRepositoryTest extends KernelTestCase
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    public function testUseCase(): void
+    {
+        /** @var DromImageIdentifierByNameInterface $DromImageIdentifierByNameRepository */
+        $DromImageIdentifierByNameRepository = self::getContainer()->get(DromImageIdentifierByNameInterface::class);
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+        $result = $DromImageIdentifierByNameRepository->find('test');
 
+        //dump($result);
+
+        self::assertTrue(true);
+
+    }
 }

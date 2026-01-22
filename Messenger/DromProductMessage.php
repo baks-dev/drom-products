@@ -23,15 +23,22 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products;
+namespace BaksDev\Drom\Products\Messenger;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Drom\Products\Type\Id\DromProductUid;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
+final class DromProductMessage
 {
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+    /** Внутренний (системный) идентификатор продукта Drom */
+    private DromProductUid $id;
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
+    public function __construct(DromProductUid $id)
+    {
+        $this->id = $id;
+    }
 
+    public function getId(): DromProductUid
+    {
+        return $this->id;
+    }
 }

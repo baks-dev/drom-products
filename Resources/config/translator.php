@@ -23,15 +23,17 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use BaksDev\Drom\Products\BaksDevDromProductsBundle;
+use Symfony\Config\FrameworkConfig;
 
-/** @note Индекс сортировки 460 */
-class BaksDevDromProductsBundle extends AbstractBundle
-{
-    public const string NAMESPACE = __NAMESPACE__.'\\';
+return static function(FrameworkConfig $config) {
 
-    public const string PATH = __DIR__.DIRECTORY_SEPARATOR;
-
-}
+    $config
+        ->translator()
+        ->paths([BaksDevDromProductsBundle::PATH.implode(
+            DIRECTORY_SEPARATOR,
+                ['Resources', 'translations', '']
+            )]); // .'Resources/translations/']);
+};
