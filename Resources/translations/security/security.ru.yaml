@@ -1,6 +1,6 @@
 # Роль
 ROLE_DROM_PRODUCTS:
-  header: 'Настройки продукта Drom'
+  header: 'Drom'
   name: 'Настройки продукта Drom'
   desc: 'Настройки продукта Drom'
 
