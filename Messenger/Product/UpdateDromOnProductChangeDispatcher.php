@@ -25,20 +25,22 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Messenger\Product;
 
-use BaksDev\Core\Messenger\MessageDispatchInterface;
-use BaksDev\Drom\Repository\AllUserProfilesByActiveToken\AllUserProfilesByActiveTokenInterface;
 use BaksDev\Core\Messenger\MessageDelay;
+use BaksDev\Core\Messenger\MessageDispatchInterface;
 use BaksDev\Drom\Products\Messenger\PriceListUpdate\UpdateDromProductMessage;
 use BaksDev\Drom\Products\Repository\AllDromProducts\AllDromProductsInterface;
 use BaksDev\Drom\Products\Repository\ExistProductByDrom\ExistProductByDromProductInterface;
 use BaksDev\Drom\Products\UseCase\Delete\DromProductDeleteDTO;
 use BaksDev\Drom\Products\UseCase\Delete\DromProductDeleteHandler;
+use BaksDev\Drom\Repository\AllUserProfilesByActiveToken\AllUserProfilesByActiveTokenInterface;
 use BaksDev\Products\Product\Messenger\ProductMessage;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-#[AsMessageHandler]
+#[Autoconfigure(public: true)]
+#[AsMessageHandler(priority: 0)]
 final readonly class UpdateDromOnProductChangeDispatcher
 {
     public function __construct(

@@ -23,16 +23,17 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Drom\Products\Repository\ExistProductByDrom;
+namespace BaksDev\Drom\Products\Repository\ExistProductByDrom\Tests;
 
+use BaksDev\Drom\Products\Repository\ExistProductByDrom\ExistProductByDromProductRepository;
 use BaksDev\Drom\Products\UseCase\NewEdit\Tests\DromProductNewTest;
 use BaksDev\Products\Product\Type\Id\ProductUid;
 use BaksDev\Products\Product\Type\Offers\ConstId\ProductOfferConst;
 use BaksDev\Products\Product\Type\Offers\Variation\ConstId\ProductVariationConst;
 use BaksDev\Products\Product\Type\Offers\Variation\Modification\ConstId\ProductModificationConst;
 use PHPUnit\Framework\Attributes\DependsOnClass;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use PHPUnit\Framework\Attributes\Group;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\Attribute\When;
 
 #[When(env: 'test')]
@@ -44,7 +45,7 @@ final class ExistProductByDromProductRepositoryTest extends KernelTestCase
     public function testRepository(): void
     {
         /** @var ExistProductByDromProductRepository $ExistProductByDromProductRepository */
-        $ExistProductByDromProductRepository = self::getContainer()->get(ExistProductByDromProductInterface::class);
+        $ExistProductByDromProductRepository = self::getContainer()->get(ExistProductByDromProductRepository::class);
 
         $result = $ExistProductByDromProductRepository
             ->product(ProductUid::TEST)

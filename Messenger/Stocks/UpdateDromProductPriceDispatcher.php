@@ -33,10 +33,12 @@ use BaksDev\Drom\Products\Repository\AllDromProducts\AllDromProductsInterface;
 use BaksDev\Drom\Repository\AllUserProfilesByActiveToken\AllUserProfilesByActiveTokenInterface;
 use BaksDev\Products\Product\Messenger\Price\UpdateMarketplacePriceMessage;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-#[AsMessageHandler]
+#[Autoconfigure(public: true)]
+#[AsMessageHandler(priority: 0)]
 final readonly class UpdateDromProductPriceDispatcher
 {
     public function __construct(

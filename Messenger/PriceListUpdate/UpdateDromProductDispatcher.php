@@ -31,12 +31,14 @@ use BaksDev\Drom\Products\Api\Post\UpdateDromProduct\UpdateDromProductRequest;
 use BaksDev\Drom\Repository\DromAuthorizationByProfile\DromAuthorizationByProfileInterface;
 use BaksDev\Users\Profile\UserProfile\Type\Id\UserProfileUid;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Twig\Environment;
 
 /** Метод отправляет запрос Drom API на обновление объявления */
-#[AsMessageHandler]
+#[Autoconfigure(public: true)]
+#[AsMessageHandler(priority: 0)]
 final readonly class UpdateDromProductDispatcher
 {
     public function __construct(

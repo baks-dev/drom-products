@@ -25,9 +25,11 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Messenger;
 
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-#[AsMessageHandler]
+#[Autoconfigure(public: true)]
+#[AsMessageHandler(priority: 0)]
 final class DromProductHandlerNull
 {
     public function __invoke(DromProductMessage $message): void {}
