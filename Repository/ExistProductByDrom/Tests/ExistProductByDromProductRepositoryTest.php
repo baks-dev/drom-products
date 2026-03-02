@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Repository\ExistProductByDrom\Tests;
 
+use BaksDev\Drom\Products\Repository\ExistProductByDrom\ExistProductByDromProductInterface;
 use BaksDev\Drom\Products\Repository\ExistProductByDrom\ExistProductByDromProductRepository;
 use BaksDev\Drom\Products\UseCase\NewEdit\Tests\DromProductNewTest;
 use BaksDev\Products\Product\Type\Id\ProductUid;
@@ -45,7 +46,7 @@ final class ExistProductByDromProductRepositoryTest extends KernelTestCase
     public function testRepository(): void
     {
         /** @var ExistProductByDromProductRepository $ExistProductByDromProductRepository */
-        $ExistProductByDromProductRepository = self::getContainer()->get(ExistProductByDromProductRepository::class);
+        $ExistProductByDromProductRepository = self::getContainer()->get(ExistProductByDromProductInterface::class);
 
         $result = $ExistProductByDromProductRepository
             ->product(ProductUid::TEST)
