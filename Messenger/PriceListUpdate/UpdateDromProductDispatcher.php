@@ -37,7 +37,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Twig\Environment;
 
 /** Метод отправляет запрос Drom API на обновление объявления */
-#[Autoconfigure(public: true)]
+// #[Autoconfigure(public: true)]
 #[AsMessageHandler(priority: 0)]
 final readonly class UpdateDromProductDispatcher
 {

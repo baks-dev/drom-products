@@ -41,7 +41,7 @@ use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /** Обновляем остатки Drom при изменении статусов заказов */
-#[Autoconfigure(public: true)]
+// #[Autoconfigure(public: true)]
 #[AsMessageHandler(priority: 90)]
 final readonly class UpdateStocksDromWhenChangeOrderStatusDispatcher
 {

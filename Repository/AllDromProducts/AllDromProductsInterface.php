@@ -32,7 +32,7 @@ use BaksDev\Products\Product\Type\Id\ProductUid;
 use Generator;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 
-#[Autoconfigure(public: true)]
+// #[Autoconfigure(public: true)]
 interface AllDromProductsInterface
 {
     /** Фильтруем по идентификатору продукта */
