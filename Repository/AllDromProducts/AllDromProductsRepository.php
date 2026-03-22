@@ -25,8 +25,8 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Repository\AllDromProducts;
 
-use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Core\Doctrine\DBALQueryBuilder;
+use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Products\Product\Entity\Event\ProductEvent;
 use BaksDev\Products\Product\Entity\Product;
 use BaksDev\Products\Product\Type\Event\ProductEventUid;
@@ -79,6 +79,7 @@ final class AllDromProductsRepository implements AllDromProductsInterface
 
     /**
      * Возвращает данные карточек продукта Drom
+     *
      * @return Generator<AllDromProductsResult>
      */
     public function findAll(): Generator
@@ -102,7 +103,7 @@ final class AllDromProductsRepository implements AllDromProductsInterface
                     'drom_product',
                     Product::class,
                     'product',
-                    'product.event = :event'
+                    'product.event = :event',
                 )
                 ->setParameter('event', $this->event, ProductEventUid::TYPE);
         }

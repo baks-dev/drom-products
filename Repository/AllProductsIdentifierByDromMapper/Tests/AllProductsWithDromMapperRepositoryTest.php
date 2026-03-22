@@ -68,7 +68,7 @@ class AllProductsWithDromMapperRepositoryTest extends KernelTestCase
                     {
                         // Вызываем метод
                         $data = $method->invoke($AllProductsWithDromMapperResult);
-//                        dump($data);
+                        //                        dump($data);
                     }
                 }
             }

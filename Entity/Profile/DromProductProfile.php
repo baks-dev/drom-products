@@ -25,8 +25,8 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Entity\Profile;
 
-use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Core\Entity\EntityEvent;
+use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Users\Profile\UserProfile\Type\Id\UserProfileUid;
 use Doctrine\ORM\Mapping as ORM;
 use InvalidArgumentException;

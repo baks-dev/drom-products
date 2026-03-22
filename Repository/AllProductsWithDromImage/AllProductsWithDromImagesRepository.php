@@ -390,7 +390,6 @@ final class AllProductsWithDromImagesRepository implements AllProductsWithDromIm
 
         /** Продукт Дром */
         $dbal
-
             ->leftJoin(
                 'product_modification',
                 DromProduct::class,
@@ -463,7 +462,7 @@ final class AllProductsWithDromImagesRepository implements AllProductsWithDromIm
                             ELSE NULL
                         END
 			    		)
-                ) AS drom_product_id"
+                ) AS drom_product_id",
             )
             ->leftJoin(
                 'drom_product',
@@ -490,10 +489,12 @@ final class AllProductsWithDromImagesRepository implements AllProductsWithDromIm
 
 
         /* Фильтр по товарам "С фото" / "Без Фото" */
-        if (true === $this->dromProductsFilter?->getExists()) {
+        if(true === $this->dromProductsFilter?->getExists())
+        {
             $dbal->andWhere('drom_product_images.root IS NOT NULL');
         }
-        if (false === $this->dromProductsFilter?->getExists()) {
+        if(false === $this->dromProductsFilter?->getExists())
+        {
             $dbal->andWhere('drom_product_images.root IS NULL');
         }
 

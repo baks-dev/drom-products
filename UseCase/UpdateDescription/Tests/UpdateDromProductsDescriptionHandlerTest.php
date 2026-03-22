@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace Baksdev\Drom\Products\UseCase\UpdateDescription\Tests;
 
-use BaksDev\Drom\Products\UseCase\NewEdit\Images\Tests\DromProductImagesEditTest;
 use BaksDev\Drom\Products\UseCase\NewEdit\Tests\DromProductNewTest;
 use BaksDev\Drom\Products\UseCase\UpdateDescription\UpdateDromProductsDescriptionDTO;
 use BaksDev\Drom\Products\UseCase\UpdateDescription\UpdateDromProductsDescriptionHandler;

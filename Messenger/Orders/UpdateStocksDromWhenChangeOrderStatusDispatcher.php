@@ -95,7 +95,7 @@ final readonly class UpdateStocksDromWhenChangeOrderStatusDispatcher
                 {
                     $this->Logger->warning(
                         sprintf('Заказ %s не был найден', $product->getProduct()),
-                        [var_export($message, true), self::class.':'.__LINE__]
+                        [var_export($message, true), self::class.':'.__LINE__],
                     );
 
                     continue;
@@ -112,7 +112,7 @@ final readonly class UpdateStocksDromWhenChangeOrderStatusDispatcher
                 $this->messageDispatch->dispatch(
                     message: $updateDromProductStockMessage,
                     stamps: [new MessageDelay('5 seconds')], // задержка 5 сек для обновления остатков в объявлении на Drom
-                    transport: 'drom-products'
+                    transport: 'drom-products',
                 );
             }
         }

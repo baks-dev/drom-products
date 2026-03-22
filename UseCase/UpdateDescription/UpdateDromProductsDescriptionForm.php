@@ -34,26 +34,26 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class UpdateDromProductsDescriptionForm extends AbstractType
 {
-	public function buildForm(FormBuilderInterface $builder, array $options) : void
-	{
-		 $builder->add('description', TextareaType::class, ['required' => false, 'label' => false]);
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder->add('description', TextareaType::class, ['required' => false, 'label' => false]);
 
-         $builder->add('profile', UpdateDromProductsDescriptionProfileForm::class, ['label' => false]);
+        $builder->add('profile', UpdateDromProductsDescriptionProfileForm::class, ['label' => false]);
 
-		/* Сохранить ******************************************************/
-		$builder->add(
-			'drom_products_description_update',
-			SubmitType::class,
-			['label' => 'Save', 'label_html' => true, 'attr' => ['class' => 'btn-primary']]
-		);
-	}
-	
-	public function configureOptions(OptionsResolver $resolver) : void
-	{
-		$resolver->setDefaults([
-			'data_class' => UpdateDromProductsDescriptionDTO::class,
-			'method' => 'POST',
-             'attr' => ['class' => 'w-100'],
-		]);
-	}
+        /* Сохранить ******************************************************/
+        $builder->add(
+            'drom_products_description_update',
+            SubmitType::class,
+            ['label' => 'Save', 'label_html' => true, 'attr' => ['class' => 'btn-primary']],
+        );
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => UpdateDromProductsDescriptionDTO::class,
+            'method' => 'POST',
+            'attr' => ['class' => 'w-100'],
+        ]);
+    }
 }

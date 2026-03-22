@@ -32,11 +32,9 @@ use Symfony\Component\HttpFoundation\File\File;
 /** @see DromProductImage */
 final class DromProductImagesDTO implements DromProductImagesInterface
 {
-    private ?DromProductImageUid $id = null;
-
     /** Обложка категории */
     public ?File $file = null;
-
+    private ?DromProductImageUid $id = null;
     /** Название файла */
     private ?string $name = null;
 

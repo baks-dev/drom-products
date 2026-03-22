@@ -25,10 +25,10 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Repository\DromImageIdentifierByName;
 
+use BaksDev\Core\Doctrine\DBALQueryBuilder;
 use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Drom\Products\Entity\Images\DromProductImage;
 use BaksDev\Drom\Products\Type\Image\DromProductImageUid;
-use BaksDev\Core\Doctrine\DBALQueryBuilder;
 
 final readonly class DromImageIdentifierByNameRepository implements DromImageIdentifierByNameInterface
 {

@@ -25,13 +25,13 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Command;
 
+use BaksDev\Core\Doctrine\ORMQueryBuilder;
 use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Drom\Products\Entity\Profile\DromProductProfile;
 use BaksDev\Drom\Products\Repository\DromProductProfile\DromProductProfileInterface;
 use BaksDev\Drom\Products\Type\Id\DromProductUid;
 use BaksDev\Drom\Products\UseCase\NewEdit\DromProductDTO;
 use BaksDev\Drom\Products\UseCase\NewEdit\DromProductHandler;
-use BaksDev\Core\Doctrine\ORMQueryBuilder;
 use BaksDev\Users\Profile\UserProfile\Type\Id\UserProfileUid;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;

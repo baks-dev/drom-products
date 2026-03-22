@@ -25,8 +25,8 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Entity\Kit;
 
-use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Core\Entity\EntityEvent;
+use BaksDev\Drom\Products\Entity\DromProduct;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use InvalidArgumentException;
@@ -34,6 +34,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * DromProductKit
+ *
  * @see DromProductKitEvent
  */
 #[ORM\Entity]

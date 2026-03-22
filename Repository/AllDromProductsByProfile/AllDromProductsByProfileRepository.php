@@ -25,9 +25,9 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Repository\AllDromProductsByProfile;
 
+use BaksDev\Core\Doctrine\ORMQueryBuilder;
 use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Drom\Products\Entity\Profile\DromProductProfile;
-use BaksDev\Core\Doctrine\ORMQueryBuilder;
 use BaksDev\Users\Profile\UserProfile\Type\Id\UserProfileUid;
 
 final readonly class AllDromProductsByProfileRepository implements AllDromProductsByProfileInterface

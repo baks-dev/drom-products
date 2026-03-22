@@ -25,10 +25,10 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Command;
 
+use BaksDev\Core\Messenger\MessageDispatchInterface;
 use BaksDev\Drom\Products\Entity\Images\DromProductImage;
 use BaksDev\Drom\Products\Repository\DromImageIdentifierByName\DromImageIdentifierByNameInterface;
 use BaksDev\Drom\Products\Repository\DromProductImageLocal\DromProductImageLocalInterface;
-use BaksDev\Core\Messenger\MessageDispatchInterface;
 use BaksDev\Files\Resources\Messenger\Request\Images\CDNUploadImageMessage;
 use Doctrine\ORM\Mapping\Table;
 use FilesystemIterator;
@@ -118,7 +118,7 @@ final class DromProductWebpImageCommand extends Command
             {
                 $io->warning(sprintf(
                     'Изображение DromProductImage %s не найдено либо уже отправлено на CDN',
-                    $dirName
+                    $dirName,
                 ));
 
                 unlink($info->getRealPath()); // удаляем файл

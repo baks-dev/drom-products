@@ -46,30 +46,6 @@ use Symfony\Component\Filesystem\Filesystem;
 #[Group('drom-products-usecase')]
 class DromProductDeleteTest extends KernelTestCase
 {
-    #[DependsOnClass(DromProductImagesEditTest::class)]
-    #[DependsOnClass(UpdateDromProductsDescriptionHandlerTest::class)]
-    public function testDelete(): void
-    {
-        $container = self::getContainer();
-        $em = $container->get(EntityManagerInterface::class);
-
-        $dromProduct = $em
-            ->getRepository(DromProduct::class)
-            ->find(DromProductUid::TEST);
-
-        self::assertNotNull($dromProduct);
-
-        $deleteDTO = new DromProductDeleteDTO();
-
-        $dromProduct->getDto($deleteDTO);
-
-        /** @var DromProductDeleteHandler $Handler */
-        $Handler = $container->get(DromProductDeleteHandler::class);
-        $deletedDromProduct = $Handler->handle($deleteDTO);
-        self::assertTrue($deletedDromProduct instanceof DromProduct);
-    }
-
-
     public static function tearDownAfterClass(): void
     {
         $container = self::getContainer();
@@ -99,7 +75,7 @@ class DromProductDeleteTest extends KernelTestCase
         /** Создаем путь к тестовой директории */
         $testUploadDir = implode(
             DIRECTORY_SEPARATOR,
-            [$containerBag->get('kernel.project_dir'), 'public', 'upload', 'tests']
+            [$containerBag->get('kernel.project_dir'), 'public', 'upload', 'tests'],
         );
 
         /** Проверяем существование директории для тестовых картинок*/
@@ -108,12 +84,35 @@ class DromProductDeleteTest extends KernelTestCase
             $fileSystem->remove($testUploadDir);
         }
 
-        
+
         /** Удаляем тестовый продукт после завершения */
         ProductsProductDeleteAdminUseCaseTest::tearDownAfterClass();
 
 
         /** Удаляем тестовый токен Drom */
         DromTokenDeleteTest::tearDownAfterClass();
+    }
+
+    #[DependsOnClass(DromProductImagesEditTest::class)]
+    #[DependsOnClass(UpdateDromProductsDescriptionHandlerTest::class)]
+    public function testDelete(): void
+    {
+        $container = self::getContainer();
+        $em = $container->get(EntityManagerInterface::class);
+
+        $dromProduct = $em
+            ->getRepository(DromProduct::class)
+            ->find(DromProductUid::TEST);
+
+        self::assertNotNull($dromProduct);
+
+        $deleteDTO = new DromProductDeleteDTO();
+
+        $dromProduct->getDto($deleteDTO);
+
+        /** @var DromProductDeleteHandler $Handler */
+        $Handler = $container->get(DromProductDeleteHandler::class);
+        $deletedDromProduct = $Handler->handle($deleteDTO);
+        self::assertTrue($deletedDromProduct instanceof DromProduct);
     }
 }

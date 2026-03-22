@@ -30,10 +30,10 @@ use BaksDev\Drom\Products\Repository\DromProductImageLocal\DromProductImageLocal
 use BaksDev\Drom\Products\Repository\DromProductImageLocal\DromProductImageLocalResult;
 use BaksDev\Drom\Products\UseCase\NewEdit\Images\Tests\DromProductImagesNewTest;
 use PHPUnit\Framework\Attributes\DependsOnClass;
+use PHPUnit\Framework\Attributes\Group;
 use ReflectionClass;
 use ReflectionMethod;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use PHPUnit\Framework\Attributes\Group;
 use Symfony\Component\DependencyInjection\Attribute\When;
 
 #[When(env: 'test')]
@@ -49,7 +49,7 @@ final class DromProductImageLocalRepositoryTest extends KernelTestCase
 
         $result = $DromProductImageLocalRepository->findAll();
 
-        foreach ($result as $dromProductImageLocalResult)
+        foreach($result as $dromProductImageLocalResult)
         {
             self::assertInstanceOf(DromProductImageLocalResult::class, $dromProductImageLocalResult);
 
@@ -64,7 +64,7 @@ final class DromProductImageLocalRepositoryTest extends KernelTestCase
                 {
                     // Вызываем метод
                     $data = $method->invoke($dromProductImageLocalResult);
-//                        dump($data);
+                    //                        dump($data);
                 }
             }
 

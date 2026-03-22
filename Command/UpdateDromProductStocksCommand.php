@@ -25,10 +25,10 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Command;
 
+use BaksDev\Core\Messenger\MessageDispatchInterface;
 use BaksDev\Drom\Products\Messenger\PriceListUpdate\UpdateDromProductMessage;
 use BaksDev\Drom\Products\Repository\AllProductsIdentifierByDromMapper\AllProductsWithDromMapperInterface;
 use BaksDev\Drom\Repository\AllUserProfilesByActiveToken\AllUserProfilesByActiveTokenInterface;
-use BaksDev\Core\Messenger\MessageDispatchInterface;
 use BaksDev\Users\Profile\UserProfile\Type\Id\UserProfileUid;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -63,7 +63,7 @@ final class UpdateDromProductStocksCommand extends Command
             'article',
             'a',
             InputOption::VALUE_OPTIONAL,
-            'Фильтр по артикулу ((--article=... || -a ...))'
+            'Фильтр по артикулу ((--article=... || -a ...))',
         );
     }
 
@@ -161,7 +161,7 @@ final class UpdateDromProductStocksCommand extends Command
             $this->messageDispatch->dispatch($updateDromProductStockMessage);
             $this->io->text(sprintf(
                 'Обновили остатки у объявления с артикулом %s',
-                $product->getProductArticle()
+                $product->getProductArticle(),
             ));
         }
     }

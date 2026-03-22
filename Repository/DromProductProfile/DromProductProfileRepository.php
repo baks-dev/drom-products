@@ -25,10 +25,10 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Repository\DromProductProfile;
 
+use BaksDev\Core\Doctrine\ORMQueryBuilder;
 use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Drom\Products\Entity\Kit\DromProductKit;
 use BaksDev\Drom\Products\Entity\Profile\DromProductProfile;
-use BaksDev\Core\Doctrine\ORMQueryBuilder;
 use BaksDev\Products\Product\Entity\Offers\ProductOffer;
 use BaksDev\Products\Product\Entity\Offers\Variation\Modification\ProductModification;
 use BaksDev\Products\Product\Entity\Offers\Variation\ProductVariation;

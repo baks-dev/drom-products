@@ -25,11 +25,11 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\UseCase\UpdateDescription;
 
-use BaksDev\Drom\Products\Entity\DromProduct;
-use BaksDev\Drom\Products\Repository\AllDromProductsByProfile\AllDromProductsByProfileInterface;
 use BaksDev\Core\Entity\AbstractHandler;
 use BaksDev\Core\Messenger\MessageDispatchInterface;
 use BaksDev\Core\Validator\ValidatorCollectionInterface;
+use BaksDev\Drom\Products\Entity\DromProduct;
+use BaksDev\Drom\Products\Repository\AllDromProductsByProfile\AllDromProductsByProfileInterface;
 use BaksDev\Files\Resources\Upload\File\FileUploadInterface;
 use BaksDev\Files\Resources\Upload\Image\ImageUploadInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -62,6 +62,7 @@ final class UpdateDromProductsDescriptionHandler extends AbstractHandler
 
         /**
          * Получаем список всех объявлений
+         *
          * @var array<DromProduct> $result
          */
         $result = $this->AllDromProductsByProfileRepository->findAll($command->getProfile()->getValue());

@@ -25,9 +25,9 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Repository\DromProductImageLocal;
 
+use BaksDev\Core\Doctrine\DBALQueryBuilder;
 use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Drom\Products\Entity\Images\DromProductImage;
-use BaksDev\Core\Doctrine\DBALQueryBuilder;
 use Generator;
 
 final readonly class DromProductImageLocalRepository implements DromProductImageLocalInterface

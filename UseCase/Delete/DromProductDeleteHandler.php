@@ -25,9 +25,9 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\UseCase\Delete;
 
+use BaksDev\Core\Entity\AbstractHandler;
 use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Drom\Products\Messenger\DromProductMessage;
-use BaksDev\Core\Entity\AbstractHandler;
 
 final class DromProductDeleteHandler extends AbstractHandler
 {

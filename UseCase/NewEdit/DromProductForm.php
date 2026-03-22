@@ -25,9 +25,9 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\UseCase\NewEdit;
 
+use BaksDev\Core\Twig\TemplateExtension;
 use BaksDev\Drom\Products\Repository\OneProductWithDromImages\OneProductWithDromImagesInterface;
 use BaksDev\Drom\Products\UseCase\NewEdit\Images\DromProductsImagesForm;
-use BaksDev\Core\Twig\TemplateExtension;
 use BaksDev\Users\Profile\UserProfile\Repository\UserProfileTokenStorage\UserProfileTokenStorageInterface;
 use Exception;
 use Symfony\Component\Form\AbstractType;
@@ -102,7 +102,7 @@ final class DromProductForm extends AbstractType
                     $path = sprintf(
                         '@drom-products:description/%s/%s.html.twig',
                         $userProfile,
-                        $product->getCategoryUrl()
+                        $product->getCategoryUrl(),
                     );
 
                     $template = $this->templateExtension->extends($path);
@@ -118,7 +118,7 @@ final class DromProductForm extends AbstractType
                 {
                     $dto->setDescription($render);
                 }
-            }
+            },
         );
 
         /** Сохранить */
@@ -128,8 +128,8 @@ final class DromProductForm extends AbstractType
             [
                 'label' => 'Save',
                 'label_html' => true,
-                'attr' => ['class' => 'btn-primary']
-            ]
+                'attr' => ['class' => 'btn-primary'],
+            ],
         );
     }
 

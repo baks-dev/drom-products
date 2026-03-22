@@ -85,12 +85,12 @@ final class DromProductsFilterForm extends AbstractType
                     $sessionJson = $sessionData ? base64_decode($sessionData) : false;
                     $sessionArray = $sessionJson !== false && json_validate($sessionJson) ? json_decode(
                         $sessionJson,
-                        true
+                        true,
                     ) : [];
 
                     $data->setExists($sessionArray['exists'] ?? null);
                 }
-            }
+            },
         );
 
 
@@ -122,7 +122,7 @@ final class DromProductsFilterForm extends AbstractType
                     $this->request->getSession()->remove($this->sessionKey);
 
                 }
-            }
+            },
         );
     }
 

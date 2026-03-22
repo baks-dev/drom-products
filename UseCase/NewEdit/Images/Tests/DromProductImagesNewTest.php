@@ -31,7 +31,6 @@ use BaksDev\Drom\Products\Type\Id\DromProductUid;
 use BaksDev\Drom\Products\UseCase\NewEdit\DromProductDTO;
 use BaksDev\Drom\Products\UseCase\NewEdit\DromProductHandler;
 use BaksDev\Drom\Products\UseCase\NewEdit\Images\DromProductImagesDTO;
-use BaksDev\Drom\Products\UseCase\NewEdit\Tests\DromProductEditTest;
 use BaksDev\Drom\Products\UseCase\NewEdit\Tests\DromProductNewTest;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\Attributes\DependsOnClass;
@@ -77,7 +76,7 @@ class DromProductImagesNewTest extends KernelTestCase
         /** Создаем путь к тестовой директории */
         $testUploadDir = implode(
             DIRECTORY_SEPARATOR,
-            [$containerBag->get('kernel.project_dir'), 'public', 'upload', 'tests']
+            [$containerBag->get('kernel.project_dir'), 'public', 'upload', 'tests'],
         );
 
         /** Проверяем существование директории для тестовых картинок */
@@ -97,7 +96,7 @@ class DromProductImagesNewTest extends KernelTestCase
 
         self::assertTrue(
             is_file($jpegTo->getPathname()),
-            'Не удалось создать файл в тестовой директории по пути:'.$jpegTo->getPathname()
+            'Не удалось создать файл в тестовой директории по пути:'.$jpegTo->getPathname(),
         );
 
         $image->setFile($jpegTo);

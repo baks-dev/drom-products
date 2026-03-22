@@ -59,7 +59,7 @@ final readonly class UpdateDromProductDispatcher
         {
             $this->Logger->warning(
                 sprintf('Настройки профиля Drom не были найдены для профиля %s', $message->getProfile()),
-                [var_export($message, true), self::class.':'.__LINE__]
+                [var_export($message, true), self::class.':'.__LINE__],
             );
         }
 
@@ -75,7 +75,7 @@ final readonly class UpdateDromProductDispatcher
         {
             $this->Logger->warning(
                 sprintf('%s: Продукт Drom не был найден для профиля ', $message->getProfile()),
-                [var_export($message, true), self::class.':'.__LINE__]
+                [var_export($message, true), self::class.':'.__LINE__],
             );
 
             return;
@@ -94,14 +94,14 @@ final readonly class UpdateDromProductDispatcher
         {
             $this->Logger->critical(
                 sprintf('%s: Ошибка обновления данных о продукте в прайс-листе Drom', $message->getProduct()),
-                [var_export($message, true), self::class.':'.__LINE__]
+                [var_export($message, true), self::class.':'.__LINE__],
             );
             return;
         }
 
         $this->Logger->critical(
             sprintf('%s: Данные о продукте в прайс-листе Drom успешно обновлены', $message->getProduct()),
-            [var_export($message, true), self::class.':'.__LINE__]
+            [var_export($message, true), self::class.':'.__LINE__],
         );
     }
 }

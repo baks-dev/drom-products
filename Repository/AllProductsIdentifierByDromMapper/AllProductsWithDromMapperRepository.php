@@ -25,12 +25,12 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Repository\AllProductsIdentifierByDromMapper;
 
+use BaksDev\Core\Doctrine\DBALQueryBuilder;
+use BaksDev\Drom\Board\Entity\DromBoard;
 use BaksDev\Drom\Board\Entity\Element\DromBoardMapperElement;
 use BaksDev\Drom\Board\Entity\Event\DromBoardEvent;
-use BaksDev\Drom\Entity\DromToken;
 use BaksDev\Drom\Entity\Active\DromTokenActive;
-use BaksDev\Drom\Board\Entity\DromBoard;
-use BaksDev\Core\Doctrine\DBALQueryBuilder;
+use BaksDev\Drom\Entity\DromToken;
 use BaksDev\Drom\Entity\Profile\DromTokenProfile;
 use BaksDev\Products\Category\Entity\CategoryProduct;
 use BaksDev\Products\Category\Entity\Info\CategoryProductInfo;
@@ -98,6 +98,7 @@ final class AllProductsWithDromMapperRepository implements AllProductsWithDromMa
 
     /**
      * Метод получает массив элементов продукции с соотношением свойств
+     *
      * @return Generator<int, AllProductsWithDromMapperResult>|false
      * */
     public function findAll(): Generator|false
@@ -121,12 +122,12 @@ final class AllProductsWithDromMapperRepository implements AllProductsWithDromMa
                 'product',
                 DromTokenProfile::class,
                 'drom_token_profile',
-                'drom_token_profile.value = :profile'
+                'drom_token_profile.value = :profile',
             )
             ->setParameter(
                 key: 'profile',
                 value: $this->profile,
-                type: UserProfileUid::TYPE
+                type: UserProfileUid::TYPE,
             );
 
         /** Проверка, есть ли соответствующий профиль */
@@ -134,7 +135,7 @@ final class AllProductsWithDromMapperRepository implements AllProductsWithDromMa
             'drom_token_profile',
             DromToken::class,
             'drom_token',
-            'drom_token.event = drom_token_profile.event'
+            'drom_token.event = drom_token_profile.event',
         );
 
         $dbal

@@ -81,7 +81,7 @@ class DromProductImagesEditTest extends KernelTestCase
         /** Создаем путь к тестовой директории */
         $testUploadDir = implode(
             DIRECTORY_SEPARATOR,
-            [$containerBag->get('kernel.project_dir'), 'public', 'upload', 'tests']
+            [$containerBag->get('kernel.project_dir'), 'public', 'upload', 'tests'],
         );
 
         /** Проверяем существование директории для тестовых картинок */
@@ -105,7 +105,7 @@ class DromProductImagesEditTest extends KernelTestCase
 
         self::assertTrue(
             is_file($pngTo->getPathname()),
-            'Не удалось создать файл в тестовой директории по пути:'.$pngTo->getPathname()
+            'Не удалось создать файл в тестовой директории по пути:'.$pngTo->getPathname(),
         );
 
         $editImagePNG->setFile($pngTo);
@@ -127,7 +127,7 @@ class DromProductImagesEditTest extends KernelTestCase
 
         self::assertTrue(
             is_file($webpTo->getPathname()),
-            'Не удалось создать файл в тестовой директории по пути:'.$webpTo->getPathname()
+            'Не удалось создать файл в тестовой директории по пути:'.$webpTo->getPathname(),
         );
 
         $editImagePNG->setFile($webpTo);

@@ -36,7 +36,7 @@ final class UpdateDromProductsDescriptionProfileForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-         $builder->add('value', HiddenType::class, ['required' => false]);
+        $builder->add('value', HiddenType::class, ['required' => false]);
 
         $builder->get('value')?->addModelTransformer(
             new CallbackTransformer(
@@ -45,7 +45,7 @@ final class UpdateDromProductsDescriptionProfileForm extends AbstractType
                 },
                 function($profile) {
                     return $profile ? new UserProfileUid($profile) : null;
-                }
+                },
             ),
         );
     }

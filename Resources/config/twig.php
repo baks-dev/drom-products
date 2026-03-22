@@ -32,6 +32,6 @@ return static function(TwigConfig $twig) {
 
     $twig->path(
         BaksDevDromProductsBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Resources', 'view', '']), //.'Resources/view',
-        'drom-products'
+        'drom-products',
     );
 };

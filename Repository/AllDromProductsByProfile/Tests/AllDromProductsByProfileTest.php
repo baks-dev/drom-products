@@ -31,8 +31,8 @@ use BaksDev\Drom\Products\Repository\AllDromProductsByProfile\AllDromProductsByP
 use BaksDev\Drom\Products\UseCase\NewEdit\Tests\DromProductNewTest;
 use BaksDev\Users\Profile\UserProfile\Type\Id\UserProfileUid;
 use PHPUnit\Framework\Attributes\DependsOnClass;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use PHPUnit\Framework\Attributes\Group;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\Attribute\When;
 
 #[When(env: 'test')]
@@ -48,7 +48,7 @@ final class AllDromProductsByProfileTest extends KernelTestCase
 
         $result = $AllDromProductsByProfileRepository->findAll(new UserProfileUid(UserProfileUid::TEST));
 
-        foreach ($result as $item)
+        foreach($result as $item)
         {
             self::assertInstanceOf(DromProduct::class, $item);
 

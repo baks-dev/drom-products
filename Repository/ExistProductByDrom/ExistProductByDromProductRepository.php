@@ -172,7 +172,7 @@ final class ExistProductByDromProductRepository implements ExistProductByDromPro
                 'product_offer',
                 '
                         product_offer.event = product.event AND
-                        product_offer.const = :offer'
+                        product_offer.const = :offer',
             );
 
         $dbal->setParameter('offer', $this->offer, ProductOfferConst::TYPE);
@@ -191,7 +191,7 @@ final class ExistProductByDromProductRepository implements ExistProductByDromPro
                 'product_variation',
                 '
                     product_variation.offer = product_offer.id AND
-                    product_variation.const = :variation'
+                    product_variation.const = :variation',
             );
 
         $dbal->setParameter('variation', $this->variation, ProductVariationConst::TYPE);
@@ -210,7 +210,7 @@ final class ExistProductByDromProductRepository implements ExistProductByDromPro
                 ProductModification::class,
                 'product_modification',
                 'product_modification.variation = product_variation.id AND
-                product_modification.const = :modification'
+                product_modification.const = :modification',
             );
 
         $dbal->setParameter('modification', $this->modification, ProductModificationConst::TYPE);

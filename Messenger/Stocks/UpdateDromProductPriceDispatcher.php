@@ -57,7 +57,7 @@ final readonly class UpdateDromProductPriceDispatcher
             ->expiresAfter('5 minutes')
             ->deduplication([
                 (string) $message->getProductEvent(),
-                self::class
+                self::class,
             ]);
 
         if($Deduplicator->isExecuted())
@@ -79,12 +79,13 @@ final readonly class UpdateDromProductPriceDispatcher
             {
                 $this->Logger->warning(
                     'Не были найдены активные токены Drom',
-                    [var_export($message, true), self::class.':'.__LINE__]
+                    [var_export($message, true), self::class.':'.__LINE__],
                 );
                 return;
             }
 
-            foreach($profiles as $profile) {
+            foreach($profiles as $profile)
+            {
                 $updateDromProductStockMessage = new UpdateDromProductMessage(
                     $profile,
                     $dromProduct->getProduct(),
@@ -96,7 +97,7 @@ final readonly class UpdateDromProductPriceDispatcher
                 $this->MessageDispatch->dispatch(
                     message: $updateDromProductStockMessage,
                     stamps: [new MessageDelay('5 seconds')],
-                    transport: 'drom-products'
+                    transport: 'drom-products',
                 );
             }
         }

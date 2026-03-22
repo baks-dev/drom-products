@@ -27,6 +27,7 @@ interface DromProductKitInterface
 {
     /**
      * Значение свойства
+     *
      * @see DromProductKit
      */
     public function getValue(): ?int;

@@ -23,10 +23,9 @@
 
 namespace BaksDev\Drom\Products\Entity\Images;
 
+use BaksDev\Core\Entity\EntityState;
 use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Drom\Products\Type\Image\DromProductImageUid;
-
-use BaksDev\Core\Entity\EntityState;
 use BaksDev\Files\Resources\Upload\UploadEntityInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -93,6 +92,7 @@ class DromProductImage extends EntityState implements UploadEntityInterface
 
     /**
      * Обязательно для загрузки на cdn
+     *
      * @see ImageUpload
      */
     public function getId(): DromProductImageUid

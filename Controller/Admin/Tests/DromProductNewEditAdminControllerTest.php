@@ -59,6 +59,12 @@ final class DromProductNewEditAdminControllerTest extends WebTestCase
         );
     }
 
+    /** Удаляем тестовый продукт после завершения */
+    public static function tearDownAfterClass(): void
+    {
+        ProductsProductDeleteAdminUseCaseTest::tearDownAfterClass();
+    }
+
     /** Доступ по роли */
     public function testRoleSuccessful(): void
     {
@@ -102,6 +108,9 @@ final class DromProductNewEditAdminControllerTest extends WebTestCase
         self::assertTrue(true);
     }
 
+    /** Доступ без роли */
+    //#[DependsOnClass(DromProductEditTest::class)]
+    //#[DependsOnClass(ProductsProductNewAdminUseCaseTest::class)]
     /** Доступ по роли ROLE_USER */
     public function testRoleUserDeny(): void
     {
@@ -123,9 +132,7 @@ final class DromProductNewEditAdminControllerTest extends WebTestCase
         self::assertTrue(true);
     }
 
-    /** Доступ без роли */
-    //#[DependsOnClass(DromProductEditTest::class)]
-    //#[DependsOnClass(ProductsProductNewAdminUseCaseTest::class)]
+
     public function testGuestFiled(): void
     {
         self::ensureKernelShutdown();
@@ -142,12 +149,5 @@ final class DromProductNewEditAdminControllerTest extends WebTestCase
         }
 
         self::assertTrue(true);
-    }
-
-
-    /** Удаляем тестовый продукт после завершения */
-    public static function tearDownAfterClass(): void
-    {
-        ProductsProductDeleteAdminUseCaseTest::tearDownAfterClass();
     }
 }

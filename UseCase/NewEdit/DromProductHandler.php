@@ -25,11 +25,11 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\UseCase\NewEdit;
 
+use BaksDev\Core\Entity\AbstractHandler;
 use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Drom\Products\Entity\Images\DromProductImage;
 use BaksDev\Drom\Products\Messenger\DromProductMessage;
 use BaksDev\Drom\Products\UseCase\NewEdit\Images\DromProductImagesDTO;
-use BaksDev\Core\Entity\AbstractHandler;
 
 final class DromProductHandler extends AbstractHandler
 {
@@ -51,8 +51,7 @@ final class DromProductHandler extends AbstractHandler
         /** Проверяем наличие root хотя бы у одного из загружаемых изображений */
         $hasRoot = $entity
             ->getImages()
-            ->filter(function (DromProductImage $image)
-            {
+            ->filter(function(DromProductImage $image) {
                 return $image->getEntityDto()->getRoot();
             });
 
@@ -70,6 +69,7 @@ final class DromProductHandler extends AbstractHandler
 
         /**
          * Загружаем изображения
+         *
          * @var DromProductImage $image
          */
         foreach($entity->getImages() as $image)

@@ -25,17 +25,17 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Controller\Admin;
 
+use BaksDev\Core\Controller\AbstractController;
+use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
 use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Drom\Products\UseCase\Delete\DromProductDeleteDTO;
 use BaksDev\Drom\Products\UseCase\Delete\DromProductDeleteForm;
 use BaksDev\Drom\Products\UseCase\Delete\DromProductDeleteHandler;
-use BaksDev\Core\Controller\AbstractController;
-use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[AsController]
 #[RoleSecurity('ROLE_DROM_PRODUCTS_DELETE')]
@@ -53,7 +53,7 @@ final class DeleteController extends AbstractController
         $form = $this
             ->createForm(DromProductDeleteForm::class, $dromProductDeleteDTO, ['action' => $this->generateUrl(
                 'drom-products:admin.products.delete',
-                ['id' => $dromProductDeleteDTO->getId()]
+                ['id' => $dromProductDeleteDTO->getId()],
             )])
             ->handleRequest($request);
 
@@ -66,7 +66,7 @@ final class DeleteController extends AbstractController
                 'page.delete',
                 $handle instanceof DromProduct ? 'success.delete' : 'danger.delete',
                 'drom-products.admin',
-                $handle
+                $handle,
             );
 
             return $this->redirectToReferer();

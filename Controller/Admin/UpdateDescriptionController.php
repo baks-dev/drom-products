@@ -25,15 +25,15 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Controller\Admin;
 
+use BaksDev\Core\Controller\AbstractController;
+use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
 use BaksDev\Drom\Products\UseCase\UpdateDescription\UpdateDromProductsDescriptionDTO;
 use BaksDev\Drom\Products\UseCase\UpdateDescription\UpdateDromProductsDescriptionForm;
 use BaksDev\Drom\Products\UseCase\UpdateDescription\UpdateDromProductsDescriptionHandler;
-use BaksDev\Core\Controller\AbstractController;
-use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[AsController]
 #[RoleSecurity('ROLE_DROM_PRODUCTS_EDIT')]
@@ -53,7 +53,7 @@ final class UpdateDescriptionController extends AbstractController
             ->createForm(
                 UpdateDromProductsDescriptionForm::class,
                 $updateDromProductsDescriptionDTO,
-                ['action' => $this->generateUrl('drom-products:admin.description.edit')]
+                ['action' => $this->generateUrl('drom-products:admin.description.edit')],
             )
             ->handleRequest($request);
 
@@ -65,7 +65,7 @@ final class UpdateDescriptionController extends AbstractController
             (
                 'page.edit',
                 true === $handle ? 'success.edit' : 'danger.edit',
-                'drom-products.admin'
+                'drom-products.admin',
             );
 
             return $this->redirectToReferer();

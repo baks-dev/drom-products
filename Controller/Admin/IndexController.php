@@ -25,13 +25,13 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Controller\Admin;
 
-use BaksDev\Drom\Products\Forms\DromFilter\DromProductsFilterDTO;
-use BaksDev\Drom\Products\Forms\DromFilter\DromProductsFilterForm;
-use BaksDev\Drom\Products\Repository\AllProductsWithDromImage\AllProductsWithDromImagesInterface;
 use BaksDev\Core\Controller\AbstractController;
 use BaksDev\Core\Form\Search\SearchDTO;
 use BaksDev\Core\Form\Search\SearchForm;
 use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
+use BaksDev\Drom\Products\Forms\DromFilter\DromProductsFilterDTO;
+use BaksDev\Drom\Products\Forms\DromFilter\DromProductsFilterForm;
+use BaksDev\Drom\Products\Repository\AllProductsWithDromImage\AllProductsWithDromImagesInterface;
 use BaksDev\Products\Product\Forms\ProductFilter\Admin\ProductFilterDTO;
 use BaksDev\Products\Product\Forms\ProductFilter\Admin\ProductFilterForm;
 use Symfony\Component\HttpFoundation\Request;
@@ -94,7 +94,7 @@ final class IndexController extends AbstractController
                 'filter' => $productFilterForm->createView(),
                 'drom' => $dromProductsFilterForm->createView(),
                 'search' => $searchForm->createView(),
-                'query' => $products
+                'query' => $products,
             ],
         );
     }

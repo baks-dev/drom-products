@@ -39,6 +39,7 @@ interface AllProductsWithDromMapperInterface
 
     /**
      * Метод получает массив элементов продукции с соотношением свойств
+     *
      * @return Generator<int, AllProductsWithDromMapperResult>|false
      * */
     public function findAll(): Generator|false;

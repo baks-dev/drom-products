@@ -29,9 +29,9 @@ use BaksDev\Drom\Products\Type\Id\DromProductUid;
 use BaksDev\Drom\Products\UseCase\NewEdit\Tests\DromProductNewTest;
 use BaksDev\Users\User\Tests\TestUserAccount;
 use PHPUnit\Framework\Attributes\DependsOnClass;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DependencyInjection\Attribute\When;
-use PHPUnit\Framework\Attributes\Group;
 
 #[Group('drom-products')]
 #[Group('drom-products-controller')]

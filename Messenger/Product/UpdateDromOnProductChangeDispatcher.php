@@ -108,7 +108,7 @@ final readonly class UpdateDromOnProductChangeDispatcher
                 $this->MessageDispatch->dispatch(
                     message: $updateDromProductStockMessage,
                     stamps: [new MessageDelay('5 seconds')],
-                    transport: 'drom-products'
+                    transport: 'drom-products',
                 );
             }
         }

@@ -32,10 +32,10 @@ use BaksDev\Drom\Products\UseCase\NewEdit\Tests\DromProductNewTest;
 use BaksDev\Products\Product\Type\Event\ProductEventUid;
 use BaksDev\Products\Product\Type\Id\ProductUid;
 use PHPUnit\Framework\Attributes\DependsOnClass;
+use PHPUnit\Framework\Attributes\Group;
 use ReflectionClass;
 use ReflectionMethod;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use PHPUnit\Framework\Attributes\Group;
 use Symfony\Component\DependencyInjection\Attribute\When;
 
 #[When(env: 'test')]
@@ -53,7 +53,8 @@ final class AllDromProductsRepositoryTest extends KernelTestCase
             ->product(new ProductUid(ProductUid::TEST))
             ->findAll();
 
-        foreach ($result as $allDromProductsResult) {
+        foreach($result as $allDromProductsResult)
+        {
             self::assertInstanceOf(AllDromProductsResult::class, $allDromProductsResult);
 
             // Вызываем все геттеры
@@ -67,14 +68,14 @@ final class AllDromProductsRepositoryTest extends KernelTestCase
                 {
                     // Вызываем метод
                     $data = $method->invoke($allDromProductsResult);
-//                        dump($data);
+                    //                        dump($data);
                 }
             }
 
             return;
         }
     }
-    
+
     public function testRepositoryEvent(): void
     {
         /** @var AllDromProductsRepository $AllDromProductsRepository */
@@ -84,7 +85,8 @@ final class AllDromProductsRepositoryTest extends KernelTestCase
             ->event(ProductEventUid::TEST)
             ->findAll();
 
-        foreach ($result as $allDromProductsResult) {
+        foreach($result as $allDromProductsResult)
+        {
             self::assertInstanceOf(AllDromProductsResult::class, $allDromProductsResult);
 
             // Вызываем все геттеры
@@ -98,7 +100,7 @@ final class AllDromProductsRepositoryTest extends KernelTestCase
                 {
                     // Вызываем метод
                     $data = $method->invoke($allDromProductsResult);
-//                        dump($data);
+                    //                        dump($data);
                 }
             }
 

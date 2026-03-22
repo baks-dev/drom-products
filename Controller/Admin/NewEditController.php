@@ -25,15 +25,15 @@ declare(strict_types=1);
 
 namespace BaksDev\Drom\Products\Controller\Admin;
 
+use BaksDev\Core\Controller\AbstractController;
+use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
+use BaksDev\Core\Type\UidType\ParamConverter;
 use BaksDev\Drom\Products\Entity\DromProduct;
 use BaksDev\Drom\Products\Repository\DromProductProfile\DromProductProfileInterface;
 use BaksDev\Drom\Products\Repository\OneProductWithDromImages\OneProductWithDromImagesInterface;
 use BaksDev\Drom\Products\UseCase\NewEdit\DromProductDTO;
 use BaksDev\Drom\Products\UseCase\NewEdit\DromProductForm;
 use BaksDev\Drom\Products\UseCase\NewEdit\DromProductHandler;
-use BaksDev\Core\Controller\AbstractController;
-use BaksDev\Core\Listeners\Event\Security\RoleSecurity;
-use BaksDev\Core\Type\UidType\ParamConverter;
 use BaksDev\Products\Product\Type\Id\ProductUid;
 use BaksDev\Products\Product\Type\Offers\ConstId\ProductOfferConst;
 use BaksDev\Products\Product\Type\Offers\Variation\ConstId\ProductVariationConst;
@@ -78,13 +78,14 @@ final class NewEditController extends AbstractController
         $dromProductDTO
             ->getProfile()
             ->setValue($this->getProfileUid());
-        
+
         $dromProductDTO
             ->getKit()
             ->setValue((int) $request->get('kit'));
 
         /**
          * Находим уникальный продукт Drom, делаем его инстанс, передаем в форму
+         *
          * @var DromProduct|false $dromProductCard
          */
         $dromProductCard = $DromProductProfileInterface

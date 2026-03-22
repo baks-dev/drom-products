@@ -43,6 +43,7 @@ interface AllDromProductsInterface
 
     /**
      * Возвращает данные карточек продукта Drom
+     *
      * @return Generator<AllDromProductsResult>
      */
     public function findAll(): Generator;
