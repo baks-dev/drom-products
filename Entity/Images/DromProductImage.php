@@ -165,4 +165,9 @@ class DromProductImage extends EntityState implements UploadEntityInterface
     {
         return $this->name;
     }
+
+    public function isCdn(): bool
+    {
+        return $this->cdn === true;
+    }
 }
